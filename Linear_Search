@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t,flag=0;
+    cout<<"Enter no element in :-";
+    cin>>t;
+    int a[t],i,j=0,x;
+    for(i=0;i<t;i++)
+    {
+        cin>>a[i];
+    }
+    cout<<"Enter ur number:- ";
+    cin>>x;
+    for(i=0;i<t;i++)
+    {
+        if(x==a[i])
+        {flag=1;
+            j=i;
+            break;
+        }
+        
+    }
+  
+    if(flag ==0)
+    cout<<"NOT Found";
+      else
+      cout<<"The position of element :- "<<j;
+    
+    return 0;
+    
+}

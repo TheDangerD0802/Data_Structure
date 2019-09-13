@@ -1,0 +1,116 @@
+#include<iostream>
+using namespace std;
+#define maxsize 5
+int peek(int [] , int* );
+int isfull(int );
+int isempty(int , int);
+int enqueue(int[], int*,int* ,int );
+int dequeue(int* , int* ,int[]);
+int main()
+{
+    int queue[maxsize],front=-1,rear=-1;
+    int c,data;
+    while(1)
+    {
+
+        cout<<"\n 1. ENQUEUE "<<endl;
+        cout<<"2. DEQUEUE "<<endl;
+        cout<<"3. PEEK "<<endl;
+        cout<<"4. EXIT "<<endl;
+        cout<<"Enter your choice : ";
+        cin>>c;
+        switch(c)
+        {
+            case 1: cout<<"Enter the data : ";
+                    cin>>data;
+                    enqueue(queue , &rear , &front , data);              //(int x[] , int *r , int *f , int data)
+                    break;
+            case 2: data = dequeue(&front , &rear , queue);                                    //(int *f , int *r , int x[])
+                    cout<<"Deleted data is:"<<data;
+                    break;
+            case 3: data = peek(queue , &rear);                                        //(int x[] , int *r)
+                    cout<<"TOP element data is:"<<data;
+                    break;
+            case 4: exit(1);
+        }
+
+    }
+}
+/* this is algorithm of isempty function
+1. begin
+2. if front < 0 or front > rear
+    return true
+    else
+        return false
+3. end */
+int isempty(int f , int r)
+{
+    if(f<0 || f>r)
+        return true;
+    else
+        return false;
+}
+/* this is algorithm of isfull function
+1. begin
+2. if rear equals to maxsize - 1
+    return true
+    else
+        return false
+3. end */
+int isfull(int r)
+{
+    if(r == maxsize - 1)
+        return true;
+    else
+        return false;
+}
+/* this is algorithm of peek function
+1. begin
+2. return queue[rear]
+3. end */
+int peek(int x[] , int *r)
+{
+    return x[*r];
+}
+/* this is algorithm of enqueue function
+1. begin
+2. if queue isfull is true
+    print overflow
+    exit
+3. if queue is not full then,
+    rear = rear + 1;
+    queue[rear] = data;
+    endif.
+4. end */
+int enqueue(int x[] , int *r , int *f , int data)
+{
+    if(isfull(*r))
+        {cout<<"Overflow \n";
+        exit(1);
+        }
+    else
+        {*r = *r +1;
+            x[*r] = data ;
+        }
+}
+/* this is algorithm of dequeue function
+1. begin
+2. if queue isempty is true
+    print underflow
+    exit
+3. if queue is not empty then,
+    data =  queue[front]
+    front = front + 1;
+    endif.
+4. end */
+int dequeue(int *f , int *r , int x[])
+{
+    int data;
+    if(isempty(*f , *r))
+       {cout<<"Underflow\n";
+        exit(1);}
+    else
+       {data =  x[*f];
+        *f = *f + 1;
+       }
+}

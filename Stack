@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+#define maxsize 5
+int peek(int[],int  );
+int isfull(int);
+int isempty(int);
+int pop(int[] , int* );
+int push(int[] ,int* ,int );
+int display(int[], int*);
+int main()
+{
+    int stack[maxsize], top = -1 ,choice,data;
+
+
+    while(1)
+    {
+
+          cout<<"\nPUSH 1";
+          cout<<"\nPOP 2 ";
+          cout<<"\nPEEK 3 ";
+         cout<<"\nDISPLAY 4";
+         cout<<"\nEXIT 5";
+         cout<<"\nEnter your choice : " ;
+         cin>>choice;
+        switch(choice)
+        {
+            case 1: cout<<"\nEnter the data : ";
+                    cin>>data;
+                    push(stack , &top ,data );
+                    break;
+            case 2: data = pop(stack , &top);
+                    cout<<"\n"<<data;
+                    break;
+            case 3: data = peek(stack , top);
+                    cout<<"\n"<<data;
+                    break;
+            case 4: display(stack , &top);
+                    break;
+            case 5: exit(1);
+        }
+
+    }
+
+}
+
+
+int isempty(int top)
+{
+    if(top ==-1)
+        return 1;
+    else
+        return 0;
+}
+int isfull(int top)
+{
+    if(top == maxsize)
+        return 1;
+    else
+        return 0;
+}
+int peek(int x[] , int top)
+{
+    if(isempty(top))
+        cout<<"Underflow "<<endl;
+    else
+    return x[top];
+}
+int push(int x[] , int *t ,int data)
+{
+    if(isfull(*t))
+        {cout<<"Overflow\n";
+        exit(1);}
+    else
+        {*t = *t +1;
+        x[*t] = data;
+        }
+}
+int pop(int x[] , int *t)
+{
+
+    int data;
+    if(isempty(*t))
+    {
+        cout<<"underflow\n";
+        exit(1);
+    }
+    else
+        {data = x[*t];
+        *t = *t-1;
+        }
+    return data;
+}
+int display(int x[] , int *t )
+{
+    int i;
+    if(isempty(*t))
+        {cout<<"Underflown\n";
+    exit(1);}
+    else
+    {for( i =0;*t !=-1;i++)
+    {
+        cout<<x[*t]<<" ";
+        *t = *t-1;
+    }
+    }
+}
